@@ -19,6 +19,9 @@ namespace Completed
 		public AudioClip eatSound2;					//2 of 2 Audio clips to play when player collects a food object.
 		public AudioClip drinkSound1;				//1 of 2 Audio clips to play when player collects a soda object.
 		public AudioClip drinkSound2;				//2 of 2 Audio clips to play when player collects a soda object.
+		public AudioClip attackSound1;						//First of two audio clips to play when attacking the player.
+		public AudioClip attackSound2;	
+
 		public AudioClip gameOverSound;				//Audio clip to play when player dies.
 		
 		private Animator animator;					//Used to store a reference to the Player's animator component.
@@ -216,6 +219,19 @@ namespace Completed
 				//Disable the soda object the player collided with.
 				other.gameObject.SetActive (false);
 			}
+			//Check if the tag of the trigger collided with is Enemy trigger.
+			else if(other.tag == "Enemy")
+			{
+				foodText.text = "enemy collision";
+				
+				//Call the RandomizeSfx function of SoundManager and pass in two drinking sounds to choose between to play the drinking sound effect.
+				SoundManager.instance.RandomizeSfx (attackSound1, attackSound2);
+				
+				//Disable the soda object the player collided with.
+				// other.gameObject.SetActive (false);
+			}
+
+			
 		}
 		
 		
