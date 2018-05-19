@@ -24,14 +24,18 @@ namespace Completed
 		private bool enemiesMoving;								//Boolean to check if enemies are moving.
 		private bool doingSetup = true;							//Boolean to check if we're setting up board, prevent Player from moving during setup.
 		
+		private bool gameBattle;
+		private bool gameGo;
+		
 		
 		
 		//Awake is always called before any Start functions
 		void Awake()
 		{
+			Debug.Log("Awake");
+		
             //Check if instance already exists
             if (instance == null)
-
                 //if not, set instance to this
                 instance = this;
 
@@ -44,14 +48,22 @@ namespace Completed
 			//Sets this to not be destroyed when reloading scene
 			DontDestroyOnLoad(gameObject);
 			
-			//Assign enemies to a new List of Enemy objects.
-			enemies = new List<Enemy>();
-			
-			//Get a component reference to the attached BoardManager script
-			boardScript = GetComponent<BoardManager>();
-			
-			//Call the InitGame function to initialize the first level 
-			InitGame();
+		}
+		void Start() {
+			Debug.Log("Start");
+
+			if(!gameBattle) {
+				//Assign enemies to a new List of Enemy objects.
+				enemies = new List<Enemy>();
+				
+				//Get a component reference to the attached BoardManager script
+				boardScript = GetComponent<BoardManager>();			
+
+				//Call the InitGame function to initialize the first level 
+				InitGame();		
+			}
+
+		
 		}
 
         //this is called only once, and the paramter tell it to be called only after the scene was loaded
@@ -59,44 +71,59 @@ namespace Completed
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static public void CallbackInitialization()
         {
-            //register the callback to be called everytime the scene is loaded
-            SceneManager.sceneLoaded += OnSceneLoaded;
+			if(!instance.gameBattle) {
+				//register the callback to be called everytime the scene is loaded
+            	SceneManager.sceneLoaded += OnSceneLoaded;
+			}
+           
         }
 
         //This is called each time a scene is loaded.
         static private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            instance.level++;
-            instance.InitGame();
-        }
+			Debug.Log("OnSceneLoaded?!");
+			if(!instance.gameBattle) {
+            	instance.level++;
+            	instance.InitGame();
+			}
+			
 
+        }
+		
 		
 		//Initializes the game for each level.
 		void InitGame()
 		{
-			//While doingSetup is true the player can't move, prevent player from moving while title card is up.
-			doingSetup = true;
+			Debug.Log("init game");
+			Debug.Log("gameBattle=");
+			Debug.Log(gameBattle);			
+			if(!gameBattle) {
+				//While doingSetup is true the player can't move, prevent player from moving while title card is up.
+				doingSetup = true;
+				
+				//Get a reference to our image LevelImage by finding it by name.
+				levelImage = GameObject.Find("LevelImage");
+				
+				//Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
+				levelText = GameObject.Find("LevelText").GetComponent<Text>();
+				
+				//Set the text of levelText to the string "Day" and append the current level number.
+				levelText.text = "Day " + level;
+				
+				//Set levelImage to active blocking player's view of the game board during setup.
+				levelImage.SetActive(true);
+				
+				//Call the HideLevelImage function with a delay in seconds of levelStartDelay.
+				Invoke("HideLevelImage", levelStartDelay);
+				
+				//Clear any Enemy objects in our List to prepare for next level.
+				enemies.Clear();
+				
+				//Call the SetupScene function of the BoardManager script, pass it current level number.
+				Debug.Log("Call setup scene");
+				boardScript.SetupScene(level);
+			}
 			
-			//Get a reference to our image LevelImage by finding it by name.
-			levelImage = GameObject.Find("LevelImage");
-			
-			//Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
-			levelText = GameObject.Find("LevelText").GetComponent<Text>();
-			
-			//Set the text of levelText to the string "Day" and append the current level number.
-			levelText.text = "Day " + level;
-			
-			//Set levelImage to active blocking player's view of the game board during setup.
-			levelImage.SetActive(true);
-			
-			//Call the HideLevelImage function with a delay in seconds of levelStartDelay.
-			Invoke("HideLevelImage", levelStartDelay);
-			
-			//Clear any Enemy objects in our List to prepare for next level.
-			enemies.Clear();
-			
-			//Call the SetupScene function of the BoardManager script, pass it current level number.
-			boardScript.SetupScene(level);
 			
 		}
 		
@@ -113,17 +140,39 @@ namespace Completed
 		
 		//Update is called every frame.
 		void Update()
-		{
-			//Check that playersTurn or enemiesMoving or doingSetup are not currently true.
-			if(playersTurn || enemiesMoving || doingSetup)
+		{			
+
+			if(!gameBattle) {
+	
+				//Check that playersTurn or enemiesMoving or doingSetup are not currently true.
+				if(playersTurn || enemiesMoving || doingSetup)					
+					//If any of these are true, return and do not start MoveEnemies.
+					return;
 				
-				//If any of these are true, return and do not start MoveEnemies.
-				return;
-			
-			//Start moving enemies.
-			StartCoroutine (MoveEnemies ());
+				StartCoroutine(MoveEnemies());
+			} else {				
+
+				//Debug.Log(isBattle);
+				if((int) (Input.GetAxisRaw("Fire1"))==1) {				
+					loadMainScene();
+				}
+			}
+		
 		}
 		
+		public void loadScene2(){
+				Debug.Log("loadScene2");											
+				SceneManager.LoadScene("scene2");
+				gameBattle = !gameBattle;	
+				
+		}
+
+		public void loadMainScene(){
+				Debug.Log("loadMainScene");											
+				SceneManager.LoadScene("Main");
+				gameBattle = !gameBattle;
+		}
+
 		//Call this to add the passed in Enemy to the List of Enemy objects.
 		public void AddEnemyToList(Enemy script)
 		{

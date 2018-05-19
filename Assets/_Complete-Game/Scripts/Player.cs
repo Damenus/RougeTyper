@@ -227,8 +227,7 @@ namespace Completed
 				//Call the RandomizeSfx function of SoundManager and pass in two drinking sounds to choose between to play the drinking sound effect.
 				SoundManager.instance.RandomizeSfx (attackSound1, attackSound2);
 				
-				//Disable the soda object the player collided with.
-				// other.gameObject.SetActive (false);
+				GameManager.instance.loadScene2();
 			}
 
 			

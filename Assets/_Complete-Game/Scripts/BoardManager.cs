@@ -40,6 +40,14 @@ namespace Completed
 		private Transform boardHolder;									//A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();	//A list of possible locations to place tiles.
 		
+
+		
+		void Awake()
+		{
+			Debug.Log("Awake board manager");
+			DontDestroyOnLoad(gameObject);
+			
+		}
 		
 		//Clears our list gridPositions and prepares it to generate a new board.
 		void InitialiseList ()
@@ -131,6 +139,7 @@ namespace Completed
 		//SetupScene initializes our level and calls the previous functions to lay out the game board
 		public void SetupScene (int level)
 		{
+			Debug.Log("Setup scene with level: " +  level.ToString());
 			//Creates the outer walls and floor.
 			BoardSetup ();
 			
