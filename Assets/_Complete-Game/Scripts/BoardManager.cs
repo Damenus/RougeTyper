@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections.Generic; 		//Allows us to use Lists.
+using System.Collections.Generic;
+using Assets.WordsRepository;
+//Allows us to use Lists.
 using Random = UnityEngine.Random; 		//Tells Random to use the Unity Engine random number generator.
 
 namespace Completed
-	
 {
 	
 	public class BoardManager : MonoBehaviour
@@ -63,6 +64,18 @@ namespace Completed
 		//Sets up the outer walls and floor (background) of the game board.
 		void BoardSetup ()
 		{
+		    var repo = new WordsRepository
+		    {
+		        Words = new List<Word>
+		        {
+                    new Word{Value = "ziomeczek", WorldLevel = WordLevel.Easy},
+                    new Word{Value = "inne", WorldLevel = WordLevel.Easy},
+                    new Word{Value = "slowo", WorldLevel = WordLevel.Easy},
+                    new Word{Value = "tutaj", WorldLevel = WordLevel.Easy},
+		        }
+		    };
+            XmlManager.Serialize(repo);
+
 			//Instantiate Board and set boardHolder to its transform.
 			boardHolder = new GameObject ("Board").transform;
 			
