@@ -6,7 +6,7 @@ namespace Assets.WordsRepository
     {
         [XmlText]
         public string Value { get; set; }
-        [XmlAttribute(AttributeName = "wordlevel")]
+        [XmlAttribute(AttributeName = "wordLevel")]
         public WordLevel WordLevel { get; set; }
     }
 }

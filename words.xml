@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<wordsRepository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <words>
+    <!-- EASY -->
+    <word wordLevel="easy">
+      drogi
+    </word>
+    <word wordLevel="easy">
+      stary
+    </word>
+    <word wordLevel="easy">
+      czas
+    </word>
+    <word wordLevel="easy">
+      gniew
+    </word>
+    <word wordLevel="easy">
+      silny
+    </word>
+    <word wordLevel="easy">
+      waga
+    </word>
+    <word wordLevel="easy">
+      pies
+    </word>
+    <word wordLevel="easy">
+      kot
+    </word>
+    <word wordLevel="easy">
+      walka
+    </word>
+    <word wordLevel="easy">
+      inny
+    </word>
+    <word wordLevel="easy">
+      obraz
+    </word>
+    <word wordLevel="easy">
+      rozum
+    </word>
+    <word wordLevel="easy">
+      droga
+    </word>
+    <word wordLevel="easy">
+      moc
+    </word>
+    <word wordLevel="easy">
+      praca
+    </word>
+    <word wordLevel="easy">
+      klasa
+    </word>
+    <word wordLevel="easy">
+      nakaz
+    </word>
+    <word wordLevel="easy">
+      inny
+    </word>
+    <word wordLevel="easy">
+      rura
+    </word>
+    <word wordLevel="easy">
+      dzik
+    </word>
+    <word wordLevel="easy">
+      banan
+    </word>
+    <word wordLevel="easy">
+      noc
+    </word>
+    <word wordLevel="easy">
+      rafa
+    </word>
+    <word wordLevel="easy">
+      rana
+    </word>
+    <word wordLevel="easy">
+      jama
+    </word>
+    <word wordLevel="easy">
+      burta
+    </word>
+    <word wordLevel="easy">
+      ryba
+    </word>
+    <word wordLevel="easy">
+      trawa
+    </word>
+    <word wordLevel="easy">
+      kwiat
+    </word>
+    <word wordLevel="easy">
+      plama
+    </word>
+    <word wordLevel="easy">
+      jama
+    </word>
+    <word wordLevel="easy">
+      bok
+    </word>
+    <word wordLevel="easy">
+      twarz
+    </word>
+    <word wordLevel="easy">
+      kula
+    </word>
+    <word wordLevel="easy">
+      szata
+    </word>
+    <word wordLevel="easy">
+      morze
+    </word>
+    <word wordLevel="easy">
+      plecy
+    </word>
+    <word wordLevel="easy">
+      klucz
+    </word>
+    
+    <!-- MEDIUM -->
+    <word wordLevel="medium">
+      najlepszy
+    </word>
+    <word wordLevel="medium">
+      wszystko
+    </word>
+    <word wordLevel="medium">
+      przyczyna
+    </word>
+    <word wordLevel="medium">
+      argument
+    </word>
+    <word wordLevel="medium">
+      ambicja
+    </word>
+    <word wordLevel="medium">
+      błąd
+    </word>
+    <word wordLevel="medium">
+      siła
+    </word>
+    <word wordLevel="medium">
+      sukces
+    </word>
+    <word wordLevel="medium">
+      słońce
+    </word>
+    <word wordLevel="medium">
+      ślepy
+    </word>
+    <word wordLevel="medium">
+      powoli
+    </word>
+    <word wordLevel="medium">
+      daleko
+    </word>
+    <word wordLevel="medium">
+      wiedza
+    </word>
+    <word wordLevel="medium">
+      umysł
+    </word>
+    <word wordLevel="medium">
+      śmieszny
+    </word>
+    <word wordLevel="medium">
+      opór
+    </word>
+    <word wordLevel="medium">
+      demokracja
+    </word>
+    <word wordLevel="medium">
+      liczny
+    </word>
+    <word wordLevel="medium">
+      przyczyna
+    </word>
+    <word wordLevel="medium">
+      ewolucja
+    </word>
+    <word wordLevel="medium">
+      sztuka
+    </word>
+    <word wordLevel="medium">
+      wieczny
+    </word>
+    <word wordLevel="medium">
+      nadzieja
+    </word>
+    <word wordLevel="medium">
+      ranking
+    </word>
+    <word wordLevel="medium">
+      wieża
+    </word>
+    <word wordLevel="medium">
+      chmury
+    </word>
+    <word wordLevel="medium">
+      łódź
+    </word>
+    <word wordLevel="medium">
+      niewolnik
+    </word>
+    <word wordLevel="medium">
+      ciemny
+    </word>
+    <word wordLevel="medium">
+      imię
+    </word>
+    <word wordLevel="medium">
+      zły
+    </word>
+    <word wordLevel="medium">
+      taniec
+    </word>
+    <word wordLevel="medium">
+      biegun
+    </word>
+    <word wordLevel="medium">
+      ląd
+    </word>
+    <word wordLevel="medium">
+      mieszkaniec
+    </word>
+    <word wordLevel="medium">
+      brąz
+    </word>
+    <word wordLevel="medium">
+      dotąd
+    </word>
+    <word wordLevel="medium">
+      żółw
+    </word>
+    
+    <!-- HARD -->
+    <word wordLevel="hard">
+      kłamstwo
+    </word>
+    <word wordLevel="hard">
+      uformować
+    </word>
+    <word wordLevel="hard">
+      milczeć
+    </word>
+    <word wordLevel="hard">
+      człowiek
+    </word>
+    <word wordLevel="hard">
+      poważny
+    </word>
+    <word wordLevel="hard">
+      bezwzględny
+    </word>
+    <word wordLevel="hard">
+      bezczynność
+    </word>
+    <word wordLevel="hard">
+      gwałtownie
+    </word>
+    <word wordLevel="hard">
+      wieczność
+    </word>
+    <word wordLevel="hard">
+      żółć
+    </word>
+    <word wordLevel="hard">
+      źdźbło
+    </word>
+    <word wordLevel="hard">
+      afiszować
+    </word>
+    <word wordLevel="hard">
+      księżyc
+    </word>
+    <word wordLevel="hard">
+      gwałtowanie
+    </word>
+    <word wordLevel="hard">
+      drążyć
+    </word>
+    <word wordLevel="hard">
+      powódź
+    </word>
+    <word wordLevel="hard">
+      trudność
+    </word>
+    <word wordLevel="hard">
+      średni
+    </word>
+    <word wordLevel="hard">
+      władca
+    </word>
+    <word wordLevel="hard">
+      lekkomyślny
+    </word>
+    <word wordLevel="hard">
+      niesłychanie
+    </word>
+    <word wordLevel="hard">
+      interesujący
+    </word>
+    <word wordLevel="hard">
+      rezygnować
+    </word>
+    <word wordLevel="hard">
+      prześcignąć
+    </word>
+    <word wordLevel="hard">
+      zazdrość
+    </word>
+    <word wordLevel="hard">
+      złodziej
+    </word>
+    <word wordLevel="hard">
+      sądzić
+    </word>
+    <word wordLevel="hard">
+      żagiel
+    </word>
+    <word wordLevel="hard">
+      półmrok
+    </word>
+    <word wordLevel="hard">
+      budzić
+    </word>
+    <word wordLevel="hard">
+      kanały
+    </word>
+    <word wordLevel="hard">
+      pilnować
+    </word>
+    <word wordLevel="hard">
+      groźny
+    </word>
+    <word wordLevel="hard">
+      tysiąc
+    </word>
+    <word wordLevel="hard">
+      źródło
+    </word>
+
+    <!-- MASTER -->
+    <word wordLevel="master">
+      ponaddwuipółmiesięczny
+    </word>
+    <word wordLevel="master">
+      dżdżownica
+    </word>
+    <word wordLevel="master">
+      chrabąszcz
+    </word>
+    <word wordLevel="master">
+      tromtadracja
+    </word>
+    <word wordLevel="master">
+      dezynwoltura
+    </word>
+    <word wordLevel="master">
+      utracjusz
+    </word>
+    <word wordLevel="master">
+      egalitaryzm
+    </word>
+    <word wordLevel="master">
+      eudajmonizm
+    </word>
+    <word wordLevel="master">
+      mitrężyć
+    </word>
+    <word wordLevel="master">
+      interlokutor
+    </word>
+    <word wordLevel="master">
+      dekadencja
+    </word>
+    <word wordLevel="master">
+      mizogin
+    </word>
+    <word wordLevel="master">
+      spuneryzm
+    </word>
+    <word wordLevel="master">
+      indyferentny
+    </word>
+    <word wordLevel="master">
+      ambiwalentny
+    </word>
+    <word wordLevel="master">
+      imponderabilia
+    </word>
+    <word wordLevel="master">
+      flegmatyk
+    </word>
+    <word wordLevel="master">
+      sangwinik
+    </word>
+    <word wordLevel="master">
+      degrengolada
+    </word>
+    <word wordLevel="master">
+      prokrastynacja
+    </word>
+    <word wordLevel="master">
+      megaloman
+    </word>
+    <word wordLevel="master">
+      egzegeza
+    </word>
+    <word wordLevel="master">
+      kaligynefobia
+    </word>
+    <word wordLevel="master">
+      metanoja
+    </word>
+    <word wordLevel="master">
+      apodyktyczny
+    </word>
+    <word wordLevel="master">
+      idiolatria
+    </word>
+    <word wordLevel="master">
+      konwenans
+    </word>
+    <word wordLevel="master">
+      arywizm
+    </word>
+    <word wordLevel="master">
+      egzaltacja
+    </word>
+    <word wordLevel="master">
+      holistyczny
+    </word>
+    <word wordLevel="master">
+      immanentny
+    </word>
+    <word wordLevel="master">
+      konfabulacja
+    </word>
+    <word wordLevel="master">
+      hipochondria
+    </word>
+    <word wordLevel="master">
+      etymologia
+    </word>
+    <word wordLevel="master">
+      transcendentny
+    </word>
+    <word wordLevel="master">
+      autoteliczny
+    </word>
+  </words>
+</wordsRepository>

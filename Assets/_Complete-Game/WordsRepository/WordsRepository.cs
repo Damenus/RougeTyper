@@ -5,9 +5,11 @@ using System.Xml.Serialization;
 namespace Assets.WordsRepository
 {
     [Serializable]
+    [XmlRoot("wordsRepository")]
     public class WordsRepository
     {
-        [XmlArray]
+        [XmlArray("words")]
+        [XmlArrayItem("word")]
         public List<Word> Words;
     }
 }

@@ -2,9 +2,9 @@
 {
     public enum WordLevel
     {
-        Easy,
-        Medium,
-        Hard,
-        Master
+        easy,
+        medium,
+        hard,
+        master
     }
 }

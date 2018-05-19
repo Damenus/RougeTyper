@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Assets.WordsRepository;
 //Allows us to use Lists.
 using Random = UnityEngine.Random; 		//Tells Random to use the Unity Engine random number generator.
@@ -10,6 +11,7 @@ namespace Completed
 	
 	public class BoardManager : MonoBehaviour
 	{
+	    public WordsRepository WordsRepository;
 		// Using Serializable allows us to embed a class with sub properties in the inspector.
 		[Serializable]
 		public class Count
@@ -64,8 +66,10 @@ namespace Completed
 		//Sets up the outer walls and floor (background) of the game board.
 		void BoardSetup ()
 		{
-			//Instantiate Board and set boardHolder to its transform.
-			boardHolder = new GameObject ("Board").transform;
+            WordsRepository = XmlManager.Deserialize<WordsRepository>();
+
+            //Instantiate Board and set boardHolder to its transform.
+            boardHolder = new GameObject ("Board").transform;
 			
 			//Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
 			for(int x = -1; x < columns + 1; x++)

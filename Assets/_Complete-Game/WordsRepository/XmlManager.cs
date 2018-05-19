@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Assets.WordsRepository
@@ -7,7 +9,7 @@ namespace Assets.WordsRepository
     {
         public static void Serialize<T>(T obj)
         {
-            using (var filestream = new FileStream("repo.xml", FileMode.Create))
+            using (var filestream = new FileStream("words3.xml", FileMode.Create))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 serializer.Serialize(filestream, obj);
@@ -16,10 +18,10 @@ namespace Assets.WordsRepository
 
         public static T Deserialize<T>()
         {
-            using (var filestream = new FileStream("repo.xml", FileMode.Open))
+            using (var reader = XmlReader.Create("words.xml"))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
-                return (T)serializer.Deserialize(filestream);
+                return (T)serializer.Deserialize(reader);
             }
         }
     }
