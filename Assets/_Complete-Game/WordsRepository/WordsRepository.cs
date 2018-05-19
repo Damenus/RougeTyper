@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace Assets.WordsRepository
@@ -11,6 +8,6 @@ namespace Assets.WordsRepository
     public class WordsRepository
     {
         [XmlArray]
-        public IEnumerable<Word> Words;
+        public List<Word> Words;
     }
 }
