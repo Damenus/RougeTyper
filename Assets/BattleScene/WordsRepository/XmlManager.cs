@@ -18,7 +18,7 @@ namespace Assets.WordsRepository
 
         public static T Deserialize<T>()
         {
-            using (var reader = XmlReader.Create("words.xml"))
+            using (var reader = XmlReader.Create("words3.xml"))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 return (T)serializer.Deserialize(reader);

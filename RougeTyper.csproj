@@ -243,6 +243,15 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Player.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\SoundManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Wall.cs" />
+    <Compile Include="Assets\BattleScene\Scripts\WordDisplay.cs" />
+    <Compile Include="Assets\BattleScene\Scripts\WordInput.cs" />
+    <Compile Include="Assets\BattleScene\Scripts\WordManager.cs" />
+    <Compile Include="Assets\BattleScene\Scripts\WordSpawner.cs" />
+    <Compile Include="Assets\BattleScene\Scripts\WordToType.cs" />
+    <Compile Include="Assets\BattleScene\WordsRepository\Word.cs" />
+    <Compile Include="Assets\BattleScene\WordsRepository\WordLevel.cs" />
+    <Compile Include="Assets\BattleScene\WordsRepository\WordsRepository.cs" />
+    <Compile Include="Assets\BattleScene\WordsRepository\XmlManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\TutorialInfo.cs" />
   </ItemGroup>

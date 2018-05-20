@@ -229,8 +229,6 @@ namespace Completed
 				
 				GameManager.instance.loadScene2();
 			}
-
-			
 		}
 		
 		
