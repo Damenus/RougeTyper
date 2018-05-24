@@ -22,15 +22,70 @@ namespace Completed
 		public int rows = 8;											//Number of rows in our game board.
 		public Count wallCount = new Count {minimum = 5, maximum = 9};  //Lower and upper limit for our random number of wall items per level.
         public Count foodCount = new Count {minimum = 1, maximum = 5};  //Lower and upper limit for our random number of food items per level.
-        public GameObject exit;											//Prefab to spawn for exit.
-		public GameObject[] floorTiles;									//Array of floor prefabs.
-		public GameObject[] wallTiles;									//Array of wall prefabs.
+        public GameObject exitWoods;											//Prefab to spawn for exit.
+		public GameObject exitRuins;											//Prefab to spawn for exit.
+		public GameObject[] floorTilesWoods;									//Array of floor prefabs.
+		public GameObject[] floorTilesRuins;									//Array of floor prefabs.
+		public GameObject[] wallTilesWoods;									//Array of wall prefabs.
+		public GameObject[] wallTilesRuins;									//Array of wall prefabs.
 		public GameObject[] foodTiles;									//Array of food prefabs.
 		public GameObject[] enemyTiles;									//Array of enemy prefabs.
-		public GameObject[] outerWallTiles;								//Array of outer tile prefabs.
+		public GameObject[] outerWallTilesWoods;								//Array of outer tile prefabs.
+		public GameObject[] outerWallTilesRuins;								//Array of outer tile prefabs.
+
+	
+		
+		private enum LevelType {Woods, Ruins};
+		private LevelType currentLevelType = LevelType.Woods;
 		
 		private Transform boardHolder;									//A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();	//A list of possible locations to place tiles.
+		
+
+		private GameObject getExit() {
+			if(currentLevelType.Equals(LevelType.Woods)) {
+				return exitWoods;
+			} else if(currentLevelType.Equals(LevelType.Ruins)) {
+				return exitRuins;
+			} else {
+				return exitWoods;
+			}
+
+		}
+
+		private GameObject[] getFloorTiles() {
+			if(currentLevelType.Equals(LevelType.Woods)) {
+				return floorTilesWoods;
+			} else if(currentLevelType.Equals(LevelType.Ruins)) {
+				return floorTilesRuins;
+			} else {
+				return floorTilesWoods;
+			}
+
+		}
+
+		private GameObject[] getWallTiles() {
+			if(currentLevelType.Equals(LevelType.Woods)) {
+				return wallTilesWoods;
+			} else if(currentLevelType.Equals(LevelType.Ruins)) {
+				return wallTilesRuins;
+			} else {
+				return wallTilesWoods;
+			}
+
+		}
+		private GameObject[] getOuterWallTiles() {
+			if(currentLevelType.Equals(LevelType.Woods)) {
+				return outerWallTilesWoods;
+			} else if(currentLevelType.Equals(LevelType.Ruins)) {
+				return outerWallTilesRuins;
+			} else {
+				return outerWallTilesWoods;
+			}
+
+		}
+
+	
 		
 
 		
@@ -45,12 +100,16 @@ namespace Completed
 
 	    public void SetupScene (int level)
 		{
+
+			Array levelValues = Enum.GetValues(typeof(LevelType));
+			currentLevelType = (LevelType)levelValues.GetValue(Random.Range(0, levelValues.Length));
+		
 			//Creates the outer walls and floor.
 		    BoardSetup();
 		    InitialiseList();
 
 		    //Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
-		    LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
+		    LayoutObjectAtRandom(getWallTiles(), wallCount.minimum, wallCount.maximum);
 
 		    //Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
 		    LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
@@ -62,12 +121,13 @@ namespace Completed
 		    LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
 
 		    //Instantiate the exit tile in the upper right hand corner of our game board
-		    Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+		    Instantiate(getExit(), new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
 		}
 
 	    void BoardSetup ()
 	    {
 //	        WordsRepository = XmlManager.Deserialize<WordsRepository>();
+			
 
 	        //Instantiate Board and set boardHolder to its transform.
 	        boardHolder = new GameObject ("Board").transform;
@@ -79,11 +139,11 @@ namespace Completed
 	            for(int y = -1; y < rows + 1; y++)
 	            {
 	                //Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
-	                GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
+	                GameObject toInstantiate = getFloorTiles()[Random.Range (0,getFloorTiles().Length)];
 					
 	                //Check if we current position is at board edge, if so choose a random outer wall prefab from our array of outer wall tiles.
 	                if(x == -1 || x == columns || y == -1 || y == rows)
-	                    toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
+	                    toInstantiate = getOuterWallTiles() [Random.Range (0, getOuterWallTiles().Length)];
 					
 	                //Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
 	                GameObject instance =
