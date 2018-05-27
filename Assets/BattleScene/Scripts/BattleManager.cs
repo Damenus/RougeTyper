@@ -74,12 +74,12 @@ public class BattleManager : MonoBehaviour
             Debug.Log(enemy);
 		    // enemy.transform.parent = enemyPosition;
             //set up player&enemy health text
-            // Debug.Log("Player health: ");
-            // Debug.Log(playerInBattle.GetComponent<PlayerInBattle>().health);
+            Debug.Log("Player health: ");
+            Debug.Log(playerInBattle.GetComponent<PlayerInBattle>().health);
             Debug.Log("Enemy health: ");
             Debug.Log(enemy.GetComponent<EnemyInBattle>().health);
             maxEnemyHealth = enemy.GetComponent<EnemyInBattle>().health;
-            // playerHealth.text = playerInBattle.GetComponent<PlayerInBattle>().health + "/" + Player.maxHealth;
+            playerHealth.text = playerInBattle.GetComponent<PlayerInBattle>().health + "/" + Player.maxHealth;
             enemyHealth.text = enemy.GetComponent<EnemyInBattle>().health + "/" + enemy.GetComponent<EnemyInBattle>().health;
 
         }

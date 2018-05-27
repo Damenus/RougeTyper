@@ -28,6 +28,14 @@ public class PlayerInBattle : MonoBehaviour {
 		
 	}
 
+	void OnEnable() {
+		   // Prevent to init on very first start of the game
+        if (GameManager.instance != null && GameManager.instance.isBattle) {
+			Debug.Log("OnEnable playerInBattle");
+			health = GameManager.instance.playerHealthPoints;		
+			Debug.Log(health);
+		}
+	}
 
 	public void attack(GameObject enemy) {
 		animator.SetTrigger("playerChop");				

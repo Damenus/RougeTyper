@@ -25,7 +25,7 @@ public class Player : MovingObject
 	public AudioClip gameOverSound;				//Audio clip to play when player dies.
 	
 	private Animator animator;					//Used to store a reference to the Player's animator component.
-	private int health;                           //Used to store player food points total during level.
+	public int health;                           //Used to store player food points total during level.
 
 	public static int maxHealth = 300;
 
@@ -59,8 +59,11 @@ public class Player : MovingObject
 	//This function is called when the behaviour becomes disabled or inactive.
 	private void OnDisable ()
 	{
-		//When Player object is disabled, store the current local food total in the GameManager so it can be re-loaded in next level.
-		GameManager.instance.playerHealthPoints = health;
+		Debug.Log("OnDisable Player");
+		// //When Player object is disabled, store the current local food total in the GameManager so it can be re-loaded in next level.
+		// GameManager.instance.playerHealthPoints = health;
+		// Debug.Log(health);
+		// Debug.Log(GameManager.instance.playerHealthPoints);
 	}
 	
 	

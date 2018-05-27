@@ -223,6 +223,8 @@ public class GameManager : MonoBehaviour
 		isBattle = true;
 		currentlyFightingEnemy = enemyObject;
 
+		GameManager.instance.playerHealthPoints = player.GetComponent<Player>().health;
+		Debug.Log(GameManager.instance.playerHealthPoints);
 		Debug.Log(boardCamera);
 		Debug.Log(battleCamera);
 
