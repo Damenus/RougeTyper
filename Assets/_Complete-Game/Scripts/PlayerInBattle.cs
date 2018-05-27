@@ -1,0 +1,60 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;	//Allows us to use UI.
+using UnityEngine.SceneManagement;
+
+namespace Completed {
+
+	public class PlayerInBattle : MonoBehaviour {
+
+		public AudioClip attackSound1;						//First of two audio clips to play when attacking the player.
+		public AudioClip attackSound2;	
+
+		public AudioClip gameOverSound;				//Audio clip to play when player dies.
+
+		public Text healthText;
+		
+		private Animator animator;					//Used to store a reference to the Player's animator component.
+
+		private int health;                           //Used to store player food points total during level.
+
+		private int damage = 50;
+
+		// Use this for initialization
+		void Start () {
+			//Get a component reference to the Player's animator component
+			animator = GetComponent<Animator>();
+
+			health = GameManager.instance.playerHealthPoints;
+		}
+		// Update is called once per frame
+		void Update () {
+			
+		}
+
+
+		public void attack(GameObject enemy) {
+			animator.SetTrigger("playerChop");				
+			SoundManager.instance.RandomizeSfx (attackSound1, attackSound2);
+			enemy.GetComponent<EnemyInBattle>().hit(damage);
+
+		}
+
+		private void CheckIfGameOver ()
+			{
+				//Check if food point total is less than or equal to zero.
+				if (health <= 0) 
+				{
+					// //Call the PlaySingle function of SoundManager and pass it the gameOverSound as the audio clip to play.
+					// SoundManager.instance.PlaySingle (gameOverSound);
+					
+					// //Stop the background music.
+					// SoundManager.instance.musicSource.Stop();
+					
+					//Call the GameOver function of GameManager.
+					GameManager.instance.GameOver ();
+				}
+			}
+	}
+
+}

@@ -20,6 +20,7 @@ namespace Completed
 		
 		
 		private Text levelText;									//Text to display current level number.
+		public Text foodText;
 		private GameObject levelImage;							//Image to block out level as levels are being set up, background for levelText.
 		private BoardManager boardScript;						//Store a reference to our BoardManager which will set up the level.
 		private int level = 1;									//Current level number, expressed in game as "Day 1".
@@ -31,9 +32,6 @@ namespace Completed
 
 		public GameObject player;
 
-		public Transform playerPodium;
-		public Transform enemyPodium;
-
 		public GameObject enemyInBattle;
 		public GameObject playerInBattle;
 
@@ -42,8 +40,11 @@ namespace Completed
 		//Awake is always called before any Start functions
 		void Awake()
 		{
-			Debug.Log("Awake");
-		
+			Debug.Log("Awake GameManager");	
+
+			boardCamera.SetActive(true);
+			battleCamera.SetActive(false);
+
             //Check if instance already exists
             if (instance == null)
                 //if not, set instance to this
@@ -59,10 +60,14 @@ namespace Completed
 			DontDestroyOnLoad(gameObject);
 			
 		}
-		void Start() {
+		void Start() {			
 
+			Debug.Log(boardCamera);
+			Debug.Log(battleCamera);
+			
 			boardCamera.SetActive(true);
 			battleCamera.SetActive(false);
+		
 		
 			//Assign enemies to a new List of Enemy objects.
 			enemies = new List<Enemy>();
@@ -219,6 +224,9 @@ namespace Completed
 
 			currentlyFightingEnemy = enemyObject;
 
+			Debug.Log(boardCamera);
+			Debug.Log(battleCamera);
+
 			boardCamera.SetActive(false);
 			battleCamera.SetActive(true);
 
@@ -226,18 +234,20 @@ namespace Completed
 
 			player.GetComponent<Player>().canMove = false;
 
-			GameObject enemy = Instantiate(enemyInBattle, enemyPodium.position, Quaternion.identity) as GameObject;
+			// GameObject enemy = Instantiate(enemyInBattle, enemyPodium.position, Quaternion.identity) as GameObject;
 
-			enemy.transform.parent = enemyPodium;
+			// enemy.transform.parent = enemyPodium;
 
-			GameObject fightingPlayer = Instantiate(playerInBattle, playerPodium.position, Quaternion.identity) as GameObject;
+			// GameObject fightingPlayer = Instantiate(playerInBattle, playerPodium.position, Quaternion.identity) as GameObject;
 
-			fightingPlayer.transform.parent = playerPodium;
+			// fightingPlayer.transform.parent = playerPodium;
 
 		}
 
 		public void ExitBattle() {
 			Debug.Log("Entering battle:");
+
+			foodText.text = "Health " + playerHealthPoints + "/" + Player.maxHealth;
 
 			boardCamera.SetActive(true);
 			battleCamera.SetActive(false);
@@ -248,6 +258,7 @@ namespace Completed
 				currentlyFightingEnemy.SetActive(false);
 				currentlyFightingEnemy = null;
 			}
+			
 
 		}
 	}
