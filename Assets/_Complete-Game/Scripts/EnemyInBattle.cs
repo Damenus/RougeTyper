@@ -13,7 +13,6 @@ public class EnemyInBattle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		health = 100;
 		Animator = GetComponent<Animator>();
 		InvokeRepeating ("PlayAttackAnim", 6f, animWaitTime);
 	}
@@ -33,9 +32,6 @@ public class EnemyInBattle : MonoBehaviour {
 	}
 	
 
-	private void OnEnable() {
-		health = 100;
-	}
 
 	public void hit(int damage) {
 		health -= damage;

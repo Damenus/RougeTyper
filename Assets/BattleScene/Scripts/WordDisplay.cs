@@ -17,7 +17,7 @@ public class WordDisplay : MonoBehaviour
 
     public void RemoveLetter()
     {
-        Debug.Log("RemoveLetter.");
+        // Debug.Log("RemoveLetter.");
         Text.text = Text.text.Remove(0, 1);
         Text.color = Color.red;
     }

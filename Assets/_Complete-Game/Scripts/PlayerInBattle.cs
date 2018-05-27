@@ -10,11 +10,9 @@ public class PlayerInBattle : MonoBehaviour {
 
 	public AudioClip gameOverSound;				//Audio clip to play when player dies.
 
-	public Text healthText;
-	
 	private Animator animator;					//Used to store a reference to the Player's animator component.
 
-	private int health;                           //Used to store player food points total during level.
+	public int health;                           //Used to store player food points total during level.
 
 	private int damage = 50;
 
