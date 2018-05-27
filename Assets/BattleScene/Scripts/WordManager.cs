@@ -13,6 +13,7 @@ public class WordManager : MonoBehaviour
     // Use this for initialization
 	void Start ()
 	{
+        Debug.Log("Start WordManager");
 	    WordsRepository = XmlManager.Deserialize<WordsRepository>();
 	    ActiveWord = new WordToType(WordsRepository.GetRandomWord(WordLevel.hard), WordSpawner.SpawnWord());
 	}
@@ -24,7 +25,8 @@ public class WordManager : MonoBehaviour
         if (ActiveWord.IsWordTyped())
         {
             Debug.Log("ale wyrabiscie");
-            GameManager.instance.loadMainScene();
+            GameManager.instance.ExitBattle();
+            // GameManager.instance.loadMainScene();
         }
     }
 }

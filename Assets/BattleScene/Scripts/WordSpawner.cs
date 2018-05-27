@@ -10,6 +10,7 @@ public class WordSpawner : MonoBehaviour
 
     public WordDisplay SpawnWord()
     {
+        Debug.Log("Spawn word.");
         GameObject wordObject = Instantiate(WordPrefab, WordCanvas);
 
         return wordObject.GetComponent<WordDisplay>();

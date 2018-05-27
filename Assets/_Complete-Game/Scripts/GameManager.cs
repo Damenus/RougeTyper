@@ -9,9 +9,12 @@ namespace Completed
 	
 	public class GameManager : MonoBehaviour
 	{
+
+		public GameObject boardCamera;
+		public GameObject battleCamera;
 		public float levelStartDelay = 2f;						//Time to wait before starting level, in seconds.
 		public float turnDelay = 0.1f;							//Delay between each Player turn.
-		public int playerFoodPoints = 100;						//Starting value for Player food points.
+		public int playerHealthPoints = Player.maxHealth;						//Starting value for Player food points.
 		public static GameManager instance = null;				//Static instance of GameManager which allows it to be accessed by any other script.
 		[HideInInspector] public bool playersTurn = true;		//Boolean to check if it's players turn, hidden in inspector but public.
 		
@@ -25,6 +28,16 @@ namespace Completed
 		private bool doingSetup = true;							//Boolean to check if we're setting up board, prevent Player from moving during setup.
 		
 		public bool gameBattle;
+
+		public GameObject player;
+
+		public Transform playerPodium;
+		public Transform enemyPodium;
+
+		public GameObject enemyInBattle;
+		public GameObject playerInBattle;
+
+		private GameObject currentlyFightingEnemy = null;
 		
 		//Awake is always called before any Start functions
 		void Awake()
@@ -47,6 +60,10 @@ namespace Completed
 			
 		}
 		void Start() {
+
+			boardCamera.SetActive(true);
+			battleCamera.SetActive(false);
+		
 			//Assign enemies to a new List of Enemy objects.
 			enemies = new List<Enemy>();
 			
@@ -195,6 +212,43 @@ namespace Completed
 			
 			//Enemies are done moving, set enemiesMoving to false.
 			enemiesMoving = false;
+		}
+
+		public void EnterBattle(GameObject enemyObject) {
+			Debug.Log("Entering battle:");
+
+			currentlyFightingEnemy = enemyObject;
+
+			boardCamera.SetActive(false);
+			battleCamera.SetActive(true);
+
+			//enemybattle = get random from list
+
+			player.GetComponent<Player>().canMove = false;
+
+			GameObject enemy = Instantiate(enemyInBattle, enemyPodium.position, Quaternion.identity) as GameObject;
+
+			enemy.transform.parent = enemyPodium;
+
+			GameObject fightingPlayer = Instantiate(playerInBattle, playerPodium.position, Quaternion.identity) as GameObject;
+
+			fightingPlayer.transform.parent = playerPodium;
+
+		}
+
+		public void ExitBattle() {
+			Debug.Log("Entering battle:");
+
+			boardCamera.SetActive(true);
+			battleCamera.SetActive(false);
+
+			player.GetComponent<Player>().canMove = true;
+
+			if (currentlyFightingEnemy != null ) {
+				currentlyFightingEnemy.SetActive(false);
+				currentlyFightingEnemy = null;
+			}
+
 		}
 	}
 }
