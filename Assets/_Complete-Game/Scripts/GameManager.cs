@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 	public Text foodText;
 	private GameObject levelImage;							//Image to block out level as levels are being set up, background for levelText.
 	private BoardManager boardScript;						//Store a reference to our BoardManager which will set up the level.
-	private int level = 1;									//Current level number, expressed in game as "Day 1".
+	private int level = 0;									//Current level number, expressed in game as "Day 1".
 	private List<Enemy> enemies;							//List of all Enemy units, used to issue them move commands.
 	private bool enemiesMoving;								//Boolean to check if enemies are moving.
 	private bool doingSetup = true;							//Boolean to check if we're setting up board, prevent Player from moving during setup.
@@ -135,28 +135,20 @@ public class GameManager : MonoBehaviour
 	}
 	
 	//Update is called every frame.
-	void Update()
-	{			
-//			if(!gameBattle) {
-//			    if ((int)(Input.GetAxisRaw("Fire1")) == 1)
-//			    {
-//			        loadScene2();
-//			    }
+	void Update() {					
+			if ((int)(Input.GetAxisRaw("Cancel")) == 1) {
+				exitToMenu();
+			}			
 			//Check that playersTurn or enemiesMoving or doingSetup are not currently true.
 			if (playersTurn || enemiesMoving || doingSetup)					
-				//If any of these are true, return and do not start MoveEnemies.
 				return;
 			
 			StartCoroutine(MoveEnemies());
-//			} else {				
-//
-//				//Debug.Log(isBattle);
-//				if((int) (Input.GetAxisRaw("Fire1"))==1) {				
-//					loadMainScene();
-//				}
-//			}
 	}
 	
+	void exitToMenu() {
+		SceneManager.LoadScene("Menu");
+	}
 	public void loadScene2(){											
 			SceneManager.LoadScene("scene2");
 	}
