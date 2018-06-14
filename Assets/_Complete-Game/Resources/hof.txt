@@ -3,3 +3,6 @@ Franciszek|2
 Franciszek|3
 Franke|2
 Franke|1
+Han Solo|5
+Damianero|4
+Noob|0
