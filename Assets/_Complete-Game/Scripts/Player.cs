@@ -27,7 +27,7 @@ public class Player : MovingObject
 	private Animator animator;					//Used to store a reference to the Player's animator component.
 	public int health;                           //Used to store player food points total during level.
 
-	public static int maxHealth = 300;
+	public static int maxHealth = 100;
 
 	public bool canMove = true;
 
@@ -285,10 +285,10 @@ public class Player : MovingObject
 	
 	//CheckIfGameOver checks if the player is out of food points and if so, ends the game.
 	private void CheckIfGameOver ()
-	{
-		//Check if food point total is less than or equal to zero.
+	{	
 		if (health <= 0) 
 		{
+			Debug.Log("Execute game over");		
 			//Call the PlaySingle function of SoundManager and pass it the gameOverSound as the audio clip to play.
 			SoundManager.instance.PlaySingle (gameOverSound);
 			
@@ -296,7 +296,7 @@ public class Player : MovingObject
 			SoundManager.instance.musicSource.Stop();
 			
 			//Call the GameOver function of GameManager.
-			GameManager.instance.GameOver ();
+			GameManager.instance.GameOver();
 		}
 	}
 }
