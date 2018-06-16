@@ -54,11 +54,12 @@ public class BattleManager : MonoBehaviour
 	void OnEnable ()
 	{
         Debug.Log("OnEnabled BattleManager");
-
+        
         // Prevent to init on very first start of the game
         if (GameManager.instance != null && GameManager.instance.isBattle) {
-	        WordsRepository = XmlManager.Deserialize<WordsRepository>();   
-	        ActiveWord = new WordToType(WordsRepository.GetRandomWord(WordLevel.hard), WordSpawner.SpawnWord());
+	        WordsRepository = XmlManager.Deserialize<WordsRepository>();
+            WordLevel wordLevel = EmotionMenager.GetInstance().LevelDifficulty();
+            ActiveWord = new WordToType(WordsRepository.GetRandomWord(WordLevel.hard), WordSpawner.SpawnWord());
 
             // get random enemy from prefabs
             Debug.Log("Init enemy:");
@@ -107,7 +108,8 @@ public class BattleManager : MonoBehaviour
 				Invoke ("Exit", exitDelay);
                 
             }   else {
-                 ActiveWord = new WordToType(WordsRepository.GetRandomWord(WordLevel.hard), WordSpawner.SpawnWord());
+                WordLevel wordLevel = EmotionMenager.GetInstance().LevelDifficulty();
+                ActiveWord = new WordToType(WordsRepository.GetRandomWord(wordLevel), WordSpawner.SpawnWord());
             }         
             // GameManager.instance.loadMainScene();
         }

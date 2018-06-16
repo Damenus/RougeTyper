@@ -295,6 +295,7 @@
   <ItemGroup>
     <None Include="Assets\Fonts\OFL.txt" />
     <None Include="Assets\TutorialInfo\Fonts\LICENSE.txt" />
+    <None Include="Assets\_Complete-Game\Resources\hof.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

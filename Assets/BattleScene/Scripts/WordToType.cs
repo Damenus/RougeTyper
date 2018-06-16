@@ -4,6 +4,7 @@
 
     private string _word;
     private int _index;
+    private EmotionMenager _emotionMenager;
 
     public WordToType(string word, WordDisplay wordDisplay)
     {
@@ -19,7 +20,11 @@
         if (_word[_index] == letter)
         {
             _index++;
+            EmotionMenager.GetInstance().HandleEvent(EmotionEventType.TYPE_CORRECT_SIGN);
             _wordDisplay.RemoveLetter();
+        } else
+        {
+            EmotionMenager.GetInstance().HandleEvent(EmotionEventType.MISSPELL);
         }
     }
 

@@ -235,17 +235,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Complete-Game\Scripts\BattleCamera.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\BoardCamera.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\BoardManager.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\EmotionMenager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Enemy.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\EnemyInBattle.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\GameManager.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Loader.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\MenuManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\MovingObject.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\PlayerInBattle.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\SoundManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Wall.cs" />
+    <Compile Include="Assets\BattleScene\Scripts\BattleManager.cs" />
     <Compile Include="Assets\BattleScene\Scripts\WordDisplay.cs" />
     <Compile Include="Assets\BattleScene\Scripts\WordInput.cs" />
-    <Compile Include="Assets\BattleScene\Scripts\WordManager.cs" />
     <Compile Include="Assets\BattleScene\Scripts\WordSpawner.cs" />
     <Compile Include="Assets\BattleScene\Scripts\WordToType.cs" />
     <Compile Include="Assets\BattleScene\WordsRepository\Word.cs" />
@@ -258,6 +265,7 @@
   <ItemGroup>
     <None Include="Assets\Fonts\OFL.txt" />
     <None Include="Assets\TutorialInfo\Fonts\LICENSE.txt" />
+    <None Include="Assets\_Complete-Game\Resources\hof.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

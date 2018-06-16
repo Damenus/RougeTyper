@@ -6,7 +6,7 @@ using UnityEngine.UI;					//Allows us to use UI.
 	
 public class GameManager : MonoBehaviour
 {
-
+    public EmotionMenager emotionMenager;                   //Menager keep satisfaction
 	public GameObject boardCamera;
 	public GameObject battleCamera;
 	public float levelStartDelay = 2f;						//Time to wait before starting level, in seconds.
@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 		
 	}
-	void Start() {			
+	void Start() {
+        emotionMenager = new EmotionMenager(this);
 
 		Debug.Log(boardCamera);
 		Debug.Log(battleCamera);
@@ -140,9 +141,12 @@ public class GameManager : MonoBehaviour
 	}
 	
 	//Update is called every frame.
-	void Update() {		
+	void Update() {
 
-			if ((int)(Input.GetAxisRaw("Cancel")) == 1) {
+        if (isBattle)
+            EmotionMenager.GetInstance().HandleEvent(EmotionEventType.TIME_ELAPSED);
+
+        if ((int)(Input.GetAxisRaw("Cancel")) == 1) {
 				exitToMenu();
 			}			
 			//Check that playersTurn or enemiesMoving or doingSetup are not currently true.
@@ -246,7 +250,8 @@ public class GameManager : MonoBehaviour
 
 	public void ExitBattle() {
 		Debug.Log("Entering battle:");
-		
+
+        isBattle = false;
 
 		//  Gplayer = GameObject.FindGameObjectWithTag ("Player");
 
