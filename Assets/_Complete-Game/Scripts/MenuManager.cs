@@ -71,22 +71,21 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	private void loadHOF() {
-		Dictionary<string, int> rawHallOfFame = new Dictionary<string,int>();
+		var rawHallOfFame = new List<Pair<string, int>>();
 		using (StreamReader reader = new StreamReader(hofPath)) {
 			string line;
 			while((line = reader.ReadLine()) != null) {
 				string[] words = line.Split('|');
-				rawHallOfFame[words[0]] = int.Parse(words[1]);
+				Pair<string, int> score = new Pair<string, int>(words[0], int.Parse(words[1]));
+				rawHallOfFame.Add(score);
 			}			
-			var uniquePlayersScores = rawHallOfFame.ToList();
-			uniquePlayersScores.Sort((a, b) => a.Value.CompareTo(b.Value));	
+			var uniquePlayersScores = rawHallOfFame;
+			uniquePlayersScores.Sort((a, b) => a.Score.CompareTo(b.Score));	
 			
 			int startIndex =  uniquePlayersScores.Count - 1;
 			int endIndex = uniquePlayersScores.Count - maxSizeOfHof <= 0 ? 0 : uniquePlayersScores.Count - maxSizeOfHof;
-			Debug.Log("start: " + startIndex.ToString());
-			Debug.Log("end: " + endIndex.ToString());
 			for (int i = startIndex ; i>=endIndex; i--) {
-				hallOfFameTextList.Add(uniquePlayersScores[i].Key + ": " + uniquePlayersScores[i].Value.ToString());
+				hallOfFameTextList.Add(uniquePlayersScores[i].Name + ": " + uniquePlayersScores[i].Score.ToString());
 			}
 		}
 	}
@@ -95,6 +94,26 @@ public class MenuManager : MonoBehaviour {
 		mainPanel.SetActive(true);
 		hofPanel.SetActive(false);
 	}
+
+	private class Pair<T1, T2>
+	{
+		public T1 Name { get; private set; }
+		public T2 Score { get; private set; }
+		internal Pair(T1 name, T2 score)
+		{
+			Name = name;
+			Score = score;
+		}
+	}
+     
+     private static class Pair
+     {
+         public static Pair<T1, T2> New<T1, T2>(T1 name, T2 score)
+         {
+             var pair = new Pair<T1, T2>(name, score);
+             return pair;
+         }
+     }
 
 	
 }
