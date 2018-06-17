@@ -167,6 +167,10 @@ public class GameManager : MonoBehaviour
 	}
 	
 	void exitToMenu() {
+		isGameOver = true;
+		Destroy(gameObject);
+		Destroy(boardCamera);
+		Destroy(battleCamera);
 		SceneManager.LoadScene("Menu");
 	}
 	public void loadScene2(){											
@@ -193,6 +197,9 @@ public class GameManager : MonoBehaviour
 		enabled = false;
 		boardCamera.SetActive(false);		
 		//go to game over scene
+		Destroy(gameObject);
+		Destroy(boardCamera);
+		Destroy(battleCamera);
 		SceneManager.LoadScene("GameOverScene");
 	}
 	
