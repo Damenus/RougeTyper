@@ -150,7 +150,7 @@ public class Player : MovingObject
 	{
 		//Every time player moves, subtract from food points total.
 		//Update food text display to reflect current score.
-		foodText.text = "Health: " + health + "/" + maxHealth;
+		foodText.text = "Health: " + GameManager.instance.playerHealthPoints + "/" + maxHealth;
 		
 		//Call the AttemptMove method of the base class, passing in the component T (in this case Wall) and x and y direction to move.
 		base.AttemptMove <T> (xDir, yDir);

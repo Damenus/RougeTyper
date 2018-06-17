@@ -239,16 +239,16 @@ public class GameManager : MonoBehaviour
 		//enemybattle = get random from list
 
 		player = GameObject.FindGameObjectWithTag ("Player");
-
 		player.GetComponent<Player>().canMove = false;
+	    player.GetComponent<Player>().health = playerHealthPoints;
+	    
+	    // GameObject enemy = Instantiate(enemyInBattle, enemyPodium.position, Quaternion.identity) as GameObject;
 
-		// GameObject enemy = Instantiate(enemyInBattle, enemyPodium.position, Quaternion.identity) as GameObject;
+	    // enemy.transform.parent = enemyPodium;
 
-		// enemy.transform.parent = enemyPodium;
+	    // GameObject fightingPlayer = Instantiate(playerInBattle, playerPodium.position, Quaternion.identity) as GameObject;
 
-		// GameObject fightingPlayer = Instantiate(playerInBattle, playerPodium.position, Quaternion.identity) as GameObject;
-
-		// fightingPlayer.transform.parent = playerPodium;
+	    // fightingPlayer.transform.parent = playerPodium;
 
 	}
 
