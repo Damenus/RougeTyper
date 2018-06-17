@@ -28,7 +28,7 @@ public class EmotionMenager : MonoBehaviour
     static double MISSPELL_REWARD = -0.01;
 
     static double LOW_LEVEL_SATISFACTION = 0.2;
-    static double MEDIUM_LEVEL_SATISFACTION = 0.3;
+    static double MEDIUM_LEVEL_SATISFACTION = 0.4;
     static double HIGH_LEVEL_SATISFACTION = 0.6;
     static double MASTER_LEVEL_SATISFACTION = 0.8;
 
@@ -101,6 +101,7 @@ public class EmotionMenager : MonoBehaviour
 
     public void SatisfactionFromKPS(double kps)
     {
+        Debug.Log(kps);
         double dzielnik = 100.0;
         if (kps < LOW_KEYSTROKE)
         {
