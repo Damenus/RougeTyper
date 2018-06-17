@@ -143,14 +143,12 @@ public class Player : MovingObject
 		}
 		
 	}
-	
-	//AttemptMove overrides the AttemptMove function in the base class MovingObject
-	//AttemptMove takes a generic parameter T which for Player will be of the type Wall, it also takes integers for x and y direction to move in.
-	protected override void AttemptMove <T> (int xDir, int yDir)
+
+    //AttemptMove overrides the AttemptMove function in the base class MovingObject
+    //AttemptMove takes a generic parameter T which for Player will be of the type Wall, it also takes integers for x and y direction to move in.
+    protected override void AttemptMove <T> (int xDir, int yDir)
 	{
 		//Every time player moves, subtract from food points total.
-		health--;
-		
 		//Update food text display to reflect current score.
 		foodText.text = "Health: " + health + "/" + maxHealth;
 		
@@ -269,9 +267,9 @@ public class Player : MovingObject
 		
 		//Update the food display with the new total.
 		foodText.text = "Health: " + health + "/" + maxHealth;
-		
-		//Check to see if game has ended.
-		CheckIfGameOver ();
+	    GameManager.instance.SetPlayersHealth(health);
+        //Check to see if game has ended.
+        CheckIfGameOver ();
 	}
 	
 	

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 	public GameObject battleCamera;
 	public float levelStartDelay = 2f;						//Time to wait before starting level, in seconds.
 	public float turnDelay = 0.1f;							//Delay between each Player turn.
-	public int playerHealthPoints = Player.maxHealth;						//Starting value for Player food points.
+	public int playerHealthPoints;						//Starting value for Player food points.
 	public static GameManager instance = null;				//Static instance of GameManager which allows it to be accessed by any other script.
 	[HideInInspector] public bool playersTurn = true;		//Boolean to check if it's players turn, hidden in inspector but public.
 	
@@ -78,9 +78,14 @@ public class GameManager : MonoBehaviour
 		InitGame();		
 	}
 
-	//this is called only once, and the paramter tell it to be called only after the scene was loaded
-	//(otherwise, our Scene Load callback would be called the very first load, and we don't want that)
-	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    public void SetPlayersHealth(int health)
+    {
+        playerHealthPoints = health;
+    }
+
+    //this is called only once, and the paramter tell it to be called only after the scene was loaded
+    //(otherwise, our Scene Load callback would be called the very first load, and we don't want that)
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
 	static public void CallbackInitialization()
 	{
 		//register the callback to be called everytime the scene is loaded
@@ -173,9 +178,8 @@ public class GameManager : MonoBehaviour
 		//Add Enemy to List enemies.
 		enemies.Add(script);
 	}
-	
-	
-	//GameOver is called when the player reaches 0 food points
+    
+    //GameOver is called when the player reaches 0 food points
 	public void GameOver()
 	{
 		Debug.Log("Game Over()");
