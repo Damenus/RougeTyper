@@ -7,3 +7,5 @@ Han Solo|5
 Damianero|4
 Noob|0
 kornik|5
+Franke|0
+test|0
