@@ -9,8 +9,8 @@ public class Player : MovingObject
 
 	public static Player instance = null;
 	public float restartLevelDelay = 1f;		//Delay time in seconds to restart level.
-	public int pointsPerFood = 10;				//Number of points to add to player food points when picking up a food object.
-	public int pointsPerSoda = 20;				//Number of points to add to player food points when picking up a soda object.
+	public int pointsPerFood;				//Number of points to add to player food points when picking up a food object.
+	public int pointsPerSoda;				//Number of points to add to player food points when picking up a soda object.
 	public int wallDamage = 1;					//How much damage a player does to a wall when chopping it.
 	public Text foodText;						//UI Text to display current player food total.
 	public AudioClip moveSound1;				//1 of 2 Audio clips to play when player moves.
@@ -143,16 +143,14 @@ public class Player : MovingObject
 		}
 		
 	}
-	
-	//AttemptMove overrides the AttemptMove function in the base class MovingObject
-	//AttemptMove takes a generic parameter T which for Player will be of the type Wall, it also takes integers for x and y direction to move in.
-	protected override void AttemptMove <T> (int xDir, int yDir)
+
+    //AttemptMove overrides the AttemptMove function in the base class MovingObject
+    //AttemptMove takes a generic parameter T which for Player will be of the type Wall, it also takes integers for x and y direction to move in.
+    protected override void AttemptMove <T> (int xDir, int yDir)
 	{
 		//Every time player moves, subtract from food points total.
-		health--;
-		
 		//Update food text display to reflect current score.
-		foodText.text = "Health: " + health + "/" + maxHealth;
+		foodText.text = "Health: " + GameManager.instance.playerHealthPoints + "/" + maxHealth;
 		
 		//Call the AttemptMove method of the base class, passing in the component T (in this case Wall) and x and y direction to move.
 		base.AttemptMove <T> (xDir, yDir);
@@ -185,8 +183,9 @@ public class Player : MovingObject
 	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-		//Check if the tag of the trigger collided with is Exit.
-		if(other.tag == "Exit")
+	    health = GameManager.instance.playerHealthPoints;
+        //Check if the tag of the trigger collided with is Exit.
+        if (other.tag == "Exit")
 		{
 			//Invoke the Restart function to start the next level with a delay of restartLevelDelay (default 1 second).
 			Invoke ("Restart", restartLevelDelay);
@@ -207,7 +206,7 @@ public class Player : MovingObject
 			
 			//Update foodText to represent current total and notify player that they gained points
 			foodText.text = "Health: " + health + "/" + maxHealth;
-			
+			GameManager.instance.SetPlayersHealth(health);
 			//Call the RandomizeSfx function of SoundManager and pass in two eating sounds to choose between to play the eating sound effect.
 			SoundManager.instance.RandomizeSfx (eatSound1, eatSound2);
 			
@@ -227,9 +226,9 @@ public class Player : MovingObject
 			
 			//Update foodText to represent current total and notify player that they gained points
 			foodText.text = "Health: " + health + "/" + maxHealth;
-			
-			//Call the RandomizeSfx function of SoundManager and pass in two drinking sounds to choose between to play the drinking sound effect.
-			SoundManager.instance.RandomizeSfx (drinkSound1, drinkSound2);
+		    GameManager.instance.SetPlayersHealth(health);
+            //Call the RandomizeSfx function of SoundManager and pass in two drinking sounds to choose between to play the drinking sound effect.
+            SoundManager.instance.RandomizeSfx (drinkSound1, drinkSound2);
 			
 			//Disable the soda object the player collided with.
 			other.gameObject.SetActive (false);
@@ -269,9 +268,9 @@ public class Player : MovingObject
 		
 		//Update the food display with the new total.
 		foodText.text = "Health: " + health + "/" + maxHealth;
-		
-		//Check to see if game has ended.
-		CheckIfGameOver ();
+	    GameManager.instance.SetPlayersHealth(health);
+        //Check to see if game has ended.
+        CheckIfGameOver ();
 	}
 	
 	
