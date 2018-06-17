@@ -63,6 +63,7 @@ public class PlayerInBattle : MonoBehaviour {
 				// SoundManager.instance.musicSource.Stop();
 				
 				//Call the GameOver function of GameManager.
+                BattleManager.instance.ClearScreen();
 				GameManager.instance.GameOver ();
 			}
 		}

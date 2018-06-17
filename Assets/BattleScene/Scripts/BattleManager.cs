@@ -87,7 +87,9 @@ public class BattleManager : MonoBehaviour
 
     public void UpdatePlayerHealth()
     {
-        playerHealth.text = playerInBattle.GetComponent<PlayerInBattle>().health + "/" + Player.maxHealth;
+        var health = playerInBattle.GetComponent<PlayerInBattle>().health;
+        if(health > 0)
+            playerHealth.text = health > 0 ? health + "/" + Player.maxHealth : "";
     }
 
     public void HitPlayer(int damage)
@@ -124,7 +126,15 @@ public class BattleManager : MonoBehaviour
     private void Exit() {
         enemy.SetActive(false);
         GameManager.instance.SetPlayersHealth(playerInBattle.GetComponent<PlayerInBattle>().health);
+        ClearScreen();
         GameManager.instance.ExitBattle();
+    }
+
+    public void ClearScreen()
+    {
+        playerHealth.text = "";
+        enemyHealth.text = "";
+        ActiveWord.RemoveWord();
     }
 
     private EnemyType getEnemyType() {

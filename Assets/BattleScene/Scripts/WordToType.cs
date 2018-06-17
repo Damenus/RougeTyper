@@ -37,4 +37,9 @@
 
         return isTyped;
     }
+
+    public void RemoveWord()
+    {
+        _wordDisplay.RemoveWord();
+    }
 }
