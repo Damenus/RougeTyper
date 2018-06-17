@@ -44,7 +44,14 @@ public class PlayerInBattle : MonoBehaviour {
 
 	}
 
-	private void CheckIfGameOver ()
+    public void GetDamage(int damage)
+    {
+        health -= damage;
+        GameManager.instance.SetPlayersHealth(health);
+        CheckIfGameOver();
+    }
+
+    private void CheckIfGameOver ()
 		{
 			//Check if food point total is less than or equal to zero.
 			if (health <= 0) 
@@ -56,6 +63,7 @@ public class PlayerInBattle : MonoBehaviour {
 				// SoundManager.instance.musicSource.Stop();
 				
 				//Call the GameOver function of GameManager.
+                BattleManager.instance.ClearScreen();
 				GameManager.instance.GameOver ();
 			}
 		}

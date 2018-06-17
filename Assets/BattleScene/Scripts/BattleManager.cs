@@ -82,12 +82,20 @@ public class BattleManager : MonoBehaviour
             maxEnemyHealth = enemy.GetComponent<EnemyInBattle>().health;
             playerHealth.text = playerInBattle.GetComponent<PlayerInBattle>().health + "/" + Player.maxHealth;
             enemyHealth.text = enemy.GetComponent<EnemyInBattle>().health + "/" + enemy.GetComponent<EnemyInBattle>().health;
-
         }
-        
-        
 	}
-    
+
+    public void UpdatePlayerHealth()
+    {
+        var health = playerInBattle.GetComponent<PlayerInBattle>().health;
+        if(health > 0)
+            playerHealth.text = health > 0 ? health + "/" + Player.maxHealth : "";
+    }
+
+    public void HitPlayer(int damage)
+    {
+        playerInBattle.GetComponent<PlayerInBattle>().GetDamage(damage);
+    }
 
     public void TypeLetter(char letter)
     {
@@ -117,7 +125,16 @@ public class BattleManager : MonoBehaviour
 
     private void Exit() {
         enemy.SetActive(false);
+        GameManager.instance.SetPlayersHealth(playerInBattle.GetComponent<PlayerInBattle>().health);
+        ClearScreen();
         GameManager.instance.ExitBattle();
+    }
+
+    public void ClearScreen()
+    {
+        playerHealth.text = "";
+        enemyHealth.text = "";
+        ActiveWord.RemoveWord();
     }
 
     private EnemyType getEnemyType() {

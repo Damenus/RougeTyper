@@ -8,6 +8,8 @@ public class EnemyInBattle : MonoBehaviour {
 
 	public int health;
 	public float animWaitTime;
+    public int attack;
+    
 
 	private Animator Animator;
 
@@ -24,6 +26,8 @@ public class EnemyInBattle : MonoBehaviour {
 
 	void PlayAttackAnim() {
 		Animator.SetTrigger("enemyAttack");
+        BattleManager.instance.HitPlayer(attack);
+	    BattleManager.instance.UpdatePlayerHealth();
 	}
 
 	private void OnDisable ()
