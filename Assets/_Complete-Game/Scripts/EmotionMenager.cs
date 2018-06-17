@@ -24,14 +24,23 @@ public class EmotionMenager : MonoBehaviour
 {
 
     static double TIME_ELAPSED_REWARD = -0.0001;
-    static double TYPE_CORRECT_SIGN_REWARD = 0.05;
+    static double TYPE_CORRECT_SIGN_REWARD = 0.005;
     static double MISSPELL_REWARD = -0.01;
 
-    //static double LOW_LEVEL_SATISFACTION = 0.2;
+    static double LOW_LEVEL_SATISFACTION = 0.2;
     static double MEDIUM_LEVEL_SATISFACTION = 0.3;
     static double HIGH_LEVEL_SATISFACTION = 0.6;
     static double MASTER_LEVEL_SATISFACTION = 0.8;
 
+    static double LOW_KEYSTROKE = 10.0;
+    static double MEDIUM_KEYSTROKE = 40.0; // typowe na świecie wynosi 40 keystroke per minute
+    static double HIGH_KEYSTROKE = 50.0;
+    static double MASTER_KEYSTROKE = 60.0;
+
+    static double LOW_KEYSTROKE_REWARD = 10.0;
+    static double MEDIUM_KEYSTROKE_REWARD = 30.0; // typowe na świecie wynosi 40 keystroke per minute
+    static double HIGH_KEYSTROKE_REWARD = 40.0;
+    static double MASTER_KEYSTROKE_REWARD = 50.0;
 
     static EmotionMenager instance = null;
     double Satisfaction { get; set; }
@@ -90,6 +99,48 @@ public class EmotionMenager : MonoBehaviour
         Debug.Log(log);
     }
 
+    public void SatisfactionFromKPS(double kps)
+    {
+        double dzielnik = 100.0;
+        if (kps < LOW_KEYSTROKE)
+        {
+            this.Satisfaction += (LOW_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+        }
+        else if (kps < MEDIUM_KEYSTROKE)
+        {
+            this.Satisfaction += (MEDIUM_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+        }
+        else if (kps < HIGH_KEYSTROKE)
+        {
+            this.Satisfaction += (HIGH_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+        }
+        else
+        {
+            this.Satisfaction += (MASTER_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+        }
+        LogSatisfaction();
+    }
+
+    public WordLevel WordLevelDifficulty()
+    {
+        EmotionLevel emotionLevel = this.LevelSatisfaction();
+        Debug.Log("Level word: " + emotionLevel.ToString());
+        switch (emotionLevel)
+        {
+            case EmotionLevel.MASTER:
+                return WordLevel.master;
+            case EmotionLevel.HIGH:
+                return WordLevel.hard;
+            case EmotionLevel.MEDIUM:
+                return WordLevel.medium;
+            case EmotionLevel.LOW:
+                return WordLevel.easy;
+            default:
+                return WordLevel.easy;
+        }
+
+    }
+
     public EmotionLevel LevelSatisfaction()
     {
         if (Satisfaction < MEDIUM_LEVEL_SATISFACTION)
@@ -108,26 +159,6 @@ public class EmotionMenager : MonoBehaviour
         {
             return EmotionLevel.MASTER;
         }
-    }
-
-    public WordLevel LevelDifficulty()
-    {
-        EmotionLevel emotionLevel = this.LevelSatisfaction();
-        Debug.Log("Level word: " + emotionLevel.ToString());
-        switch (emotionLevel)
-        {
-            case EmotionLevel.MASTER:
-                return WordLevel.master;
-            case EmotionLevel.HIGH:
-                return WordLevel.hard;
-            case EmotionLevel.MEDIUM:
-                return WordLevel.medium;
-            case EmotionLevel.LOW:
-                return WordLevel.easy;
-            default:
-                return WordLevel.easy;
-        }
-
     }
 
     private void Awake()

@@ -2,8 +2,9 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;		//Allows us to use Lists. 
-using UnityEngine.UI;					//Allows us to use UI.
-	
+using UnityEngine.UI;                   //Allows us to use UI.
+using System;
+
 public class GameManager : MonoBehaviour
 {
     public EmotionMenager emotionMenager;                   //Menager keep satisfaction
@@ -35,9 +36,13 @@ public class GameManager : MonoBehaviour
 	public GameObject playerInBattle;
 
 	private GameObject currentlyFightingEnemy = null;
-	
-	//Awake is always called before any Start functions
-	void Awake() {
+
+    public double typedKeys = 0;
+    public double mean = 0;
+    public double milisec = 0;
+
+    //Awake is always called before any Start functions
+    void Awake() {
 		Debug.Log("Awake GameManager");	
 
 		boardCamera.SetActive(true);

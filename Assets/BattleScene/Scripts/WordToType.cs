@@ -22,6 +22,7 @@
             _index++;
             EmotionMenager.GetInstance().HandleEvent(EmotionEventType.TYPE_CORRECT_SIGN);
             _wordDisplay.RemoveLetter();
+            GameManager.instance.typedKeys += 1;
         } else
         {
             EmotionMenager.GetInstance().HandleEvent(EmotionEventType.MISSPELL);
