@@ -126,7 +126,6 @@ public class BattleManager : MonoBehaviour
     private void Exit() {
         enemy.SetActive(false);
         GameManager.instance.SetPlayersHealth(playerInBattle.GetComponent<PlayerInBattle>().health);
-        ClearScreen();
         GameManager.instance.ExitBattle();
     }
 
