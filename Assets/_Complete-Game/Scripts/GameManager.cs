@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 	private GameObject currentlyFightingEnemy = null;
 
     public double typedKeys = 0;
-    public double mean = 0;
+    public double meanKPM = 0;
     public double milisec = 0;
 
     //Awake is always called before any Start functions

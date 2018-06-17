@@ -71,21 +71,21 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	private void loadHOF() {
-		var rawHallOfFame = new List<Pair<string, int>>();
+		var rawHallOfFame = new List<Pair<string, Pair<int,double>>>();
 		using (StreamReader reader = new StreamReader(hofPath)) {
 			string line;
 			while((line = reader.ReadLine()) != null) {
 				string[] words = line.Split('|');
-				Pair<string, int> score = new Pair<string, int>(words[0], int.Parse(words[1]));
+				Pair<string, Pair<int,double>> score = new Pair<string, Pair<int,double>>(words[0], new Pair<int,double>(int.Parse(words[1]),double.Parse(words[2])));
 				rawHallOfFame.Add(score);
 			}			
 			var uniquePlayersScores = rawHallOfFame;
-			uniquePlayersScores.Sort((a, b) => a.Score.CompareTo(b.Score));	
+			uniquePlayersScores.Sort((a, b) => a.Score.Name.CompareTo(b.Score.Name));	
 			
 			int startIndex =  uniquePlayersScores.Count - 1;
 			int endIndex = uniquePlayersScores.Count - maxSizeOfHof <= 0 ? 0 : uniquePlayersScores.Count - maxSizeOfHof;
 			for (int i = startIndex ; i>=endIndex; i--) {
-				hallOfFameTextList.Add(uniquePlayersScores[i].Name + ": " + uniquePlayersScores[i].Score.ToString());
+				hallOfFameTextList.Add(uniquePlayersScores[i].Name + ": " + uniquePlayersScores[i].Score.Name.ToString() + " " + uniquePlayersScores[i].Score.Score.ToString() + "kpm");
 			}
 		}
 	}

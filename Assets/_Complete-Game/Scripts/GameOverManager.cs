@@ -23,7 +23,7 @@ public class GameOverManager : MonoBehaviour {
 		gameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
 		nameInput = GameObject.Find("InputName").GetComponent<Text>();
 		//Set levelText to display number of levels passed and game over message
-		if (GameManager.instance) {
+		if (!GameManager.instance) {
 			survivedLevels =  (GameManager.instance.level - 2).ToString();
 		}		
 		gameOverText.text = "You survived " + survivedLevels  + " level(s).";		
@@ -39,7 +39,7 @@ public class GameOverManager : MonoBehaviour {
 			}
 			//check if 'enter' was pressed 
 			if((int)(Input.GetAxisRaw("Submit")) == 1) {
-					signToHoF(nameInput.text, survivedLevels);
+					signToHoF(nameInput.text, survivedLevels, GameManager.instance.meanKPM.ToString().Split('.')[0]);
 					SceneManager.LoadScene("Menu");
 			} else if(Input.inputString == "\b") {
 				//backspace
@@ -56,11 +56,11 @@ public class GameOverManager : MonoBehaviour {
 		}			
 	}
 
-	void signToHoF(string name, string level) { 
+	void signToHoF(string name, string level, string kpm) { 
 		Debug.Log("Sign to HoF.");
-		Debug.Log("Name: " + name + "; levle: " + level);
+		Debug.Log("Name: " + name + "; levle: " + level + "; kpm: " + kpm);
         StreamWriter writer = new StreamWriter(hofPath, true);
-		string line = name + "|" + level;
+		string line = name + "|" + level + "|" + kpm;
         writer.WriteLine(line);
         writer.Close();
 	}

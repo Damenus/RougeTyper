@@ -1,10 +1,7 @@
-Dunkey|0
-Franciszek|2
-Franciszek|3
-Franke|2
-Franke|1
-Han Solo|5
-Damianero|4
-Noob|0
-kornik|5
-Franko|0
+Dunkey|0|10
+Franke|2|50
+Franke|1|53
+Han Solo|5|121
+Damianero|4|90
+kornik|5|100
+Franko|0|10
