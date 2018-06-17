@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 150
   animWaitTime: 3
-  attack: 10
+  attack: 12
 --- !u!212 &212822173187740626
 SpriteRenderer:
   m_ObjectHideFlags: 1
