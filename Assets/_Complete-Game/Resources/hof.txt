@@ -5,3 +5,8 @@ Han Solo|5|121
 Damianero|4|90
 kornik|5|100
 Franko|0|10
+Damianero|8|146
+Dummy|8|131
+MSI|3|89
+MSI|6|38
+ana|1|18

@@ -24,7 +24,7 @@ public class EmotionMenager : MonoBehaviour
 {
 
     static double TIME_ELAPSED_REWARD = -0.0001;
-    static double TYPE_CORRECT_SIGN_REWARD = 0.001;
+    static double TYPE_CORRECT_SIGN_REWARD = 0.01;
     static double MISSPELL_REWARD = -0.01;
 
     static double LOW_LEVEL_SATISFACTION = 0.2;
@@ -101,27 +101,27 @@ public class EmotionMenager : MonoBehaviour
 
     public void SatisfactionFromKPS(double kps)
     {
-        double dzielnik = 1000.0;
+        double dzielnik = 100.0;
         double a;
         if (kps < LOW_KEYSTROKE)
         {
-            this.Satisfaction += (LOW_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
-            a = (LOW_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+            this.Satisfaction += (LOW_LEVEL_SATISFACTION - 0.1 - this.Satisfaction) / dzielnik;
+            a = (LOW_LEVEL_SATISFACTION - 0.1 - this.Satisfaction) / dzielnik;
         }
         else if (kps < MEDIUM_KEYSTROKE)
         {
-            this.Satisfaction += (MEDIUM_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
-            a = (MEDIUM_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+            this.Satisfaction += (MEDIUM_LEVEL_SATISFACTION + 0.1 - this.Satisfaction) / dzielnik;
+            a = (MEDIUM_LEVEL_SATISFACTION - 0.1 - this.Satisfaction) / dzielnik;
         }
         else if (kps < HIGH_KEYSTROKE)
         {
-            this.Satisfaction += (HIGH_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
-            a = (HIGH_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+            this.Satisfaction += (HIGH_LEVEL_SATISFACTION - 0.1 - this.Satisfaction) / dzielnik;
+            a = (HIGH_LEVEL_SATISFACTION - 0.1 - this.Satisfaction) / dzielnik;
         }
         else
         {
-            this.Satisfaction += (MASTER_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
-            a = (MASTER_LEVEL_SATISFACTION - this.Satisfaction) / dzielnik;
+            this.Satisfaction += (MASTER_LEVEL_SATISFACTION - 0.1 - this.Satisfaction) / dzielnik;
+            a = (MASTER_LEVEL_SATISFACTION - 0.1 - this.Satisfaction) / dzielnik;
         }
         //LogSatisfaction();
         Debug.Log("Satifacion " + Satisfaction + " KPS " + kps + " minus " + a);
