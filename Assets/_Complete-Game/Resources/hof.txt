@@ -10,3 +10,4 @@ Dummy|8|131
 MSI|3|89
 MSI|6|38
 ana|1|18
+Franke|1|14

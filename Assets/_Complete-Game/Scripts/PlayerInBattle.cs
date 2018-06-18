@@ -9,6 +9,7 @@ public class PlayerInBattle : MonoBehaviour {
 	public AudioClip attackSound2;	
 
 	public AudioClip gameOverSound;				//Audio clip to play when player dies.
+	public AudioClip playerHitSound;				//Audio clip to play when player dies.
 
 	private Animator animator;					//Used to store a reference to the Player's animator component.
 
@@ -47,6 +48,8 @@ public class PlayerInBattle : MonoBehaviour {
     public void GetDamage(int damage)
     {
         health -= damage;
+		SoundManager.instance.PlaySingle (playerHitSound);
+		animator.SetTrigger("playerHit");
         GameManager.instance.SetPlayersHealth(health);
         CheckIfGameOver();
     }

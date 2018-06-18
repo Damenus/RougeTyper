@@ -21,6 +21,7 @@ public class BattleManager : MonoBehaviour
 
     public Text playerHealth;
     public Text enemyHealth;
+    public Text headline;
 
     private int maxEnemyHealth;
 	
@@ -82,6 +83,7 @@ public class BattleManager : MonoBehaviour
             maxEnemyHealth = enemy.GetComponent<EnemyInBattle>().health;
             playerHealth.text = playerInBattle.GetComponent<PlayerInBattle>().health + "/" + Player.maxHealth;
             enemyHealth.text = enemy.GetComponent<EnemyInBattle>().health + "/" + enemy.GetComponent<EnemyInBattle>().health;
+            headline.text = "Fight!";
         }
 	}
 
@@ -111,8 +113,9 @@ public class BattleManager : MonoBehaviour
 
             if(enemy.GetComponent<EnemyInBattle>().health <= 0) {
                 //Invoke the Restart function to start the next level with a delay of restartLevelDelay (default 1 second).
+                Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!! VICTORY");
                 Text foodText = GameObject.FindGameObjectWithTag("FoodText").GetComponent<Text>();
-                foodText.text = "Victory!";                
+                headline.text = "Victory!";                
 				Invoke ("Exit", exitDelay);
                 
             }   else {

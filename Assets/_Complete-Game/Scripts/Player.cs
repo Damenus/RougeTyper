@@ -236,10 +236,10 @@ public class Player : MovingObject
 		//Check if the tag of the trigger collided with is Enemy trigger.
 		else if(other.tag == "Enemy")
 		{
-			foodText.text = "Fight!";
+			foodText.text = "";
 			
 			//Call the RandomizeSfx function of SoundManager and pass in two drinking sounds to choose between to play the drinking sound effect.
-			SoundManager.instance.RandomizeSfx (attackSound1, attackSound2);
+			// SoundManager.instance.RandomizeSfx (attackSound1, attackSound2);
 			
 			GameManager.instance.EnterBattle(other.gameObject);
 			// GameManager.instance.loadScene2();
